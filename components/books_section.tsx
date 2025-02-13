@@ -196,9 +196,20 @@ const BookSection = () => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Link href={selectedBook?.link} isExternal>
-                  <Button color="primary">Download PDF</Button>
-                </Link>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    if (selectedBook?.link) {
+                      window.open(
+                        selectedBook.link,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
+                    }
+                  }}
+                >
+                  Download PDF
+                </Button>
               </ModalFooter>
             </>
           )}

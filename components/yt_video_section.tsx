@@ -10,6 +10,7 @@ import {
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { PlayCircle, FolderKanban, Video, ListVideo } from "lucide-react";
+import Image from "next/image";
 
 interface Video {
   name: string;
@@ -151,9 +152,11 @@ const VideoCard = ({
     <Card className="bg-content1">
       <CardBody className="p-0">
         <div className="relative group">
-          <img
+          <Image
             src={video.thumbnail}
             alt={video.name}
+            width={400}
+            height={225}
             className="w-full aspect-video object-cover"
           />
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -245,9 +248,11 @@ const YouTubeSection = () => {
                 {selectedVideo?.name}
               </ModalHeader>
               <ModalBody>
-                <img
-                  src={selectedVideo?.thumbnail}
-                  alt={selectedVideo?.name}
+                <Image
+                  src={selectedVideo?.thumbnail || ""}
+                  alt={selectedVideo?.name || ""}
+                  width={800}
+                  height={450}
                   className="w-full aspect-video object-cover rounded-lg"
                 />
                 <div className="flex items-center gap-4 mt-4">
