@@ -11,6 +11,7 @@ import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { Link } from "@heroui/link";
 import { Book } from "lucide-react";
+import Image from "next/image";
 
 interface Book {
   name: string;
@@ -19,6 +20,7 @@ interface Book {
   description: string;
   category: string;
   imageId: string;
+  thumbnail: string;
 }
 
 const BOOKS_DATA: Book[] = [
@@ -30,6 +32,7 @@ const BOOKS_DATA: Book[] = [
       "An in-depth guide to designing large-scale distributed systems. Covers fundamental concepts of data systems, replication, partitioning, consistency, and system design patterns. Essential reading for software architects and system designers.",
     category: "System Design",
     imageId: "book-0",
+    thumbnail: "/books/1.jpg",
   },
   {
     name: "AI Engineering: Building Applications with Foundation Models",
@@ -39,6 +42,7 @@ const BOOKS_DATA: Book[] = [
       "Comprehensive guide to building AI applications using foundation models. Learn about prompt engineering, fine-tuning, deployment strategies, and best practices for working with large language models.",
     category: "AI/ML",
     imageId: "book-1",
+    thumbnail: "/books/2.jpg",
   },
   {
     name: "Hands-On Large Language Models",
@@ -48,6 +52,7 @@ const BOOKS_DATA: Book[] = [
       "Practical guide to working with LLMs. Covers model architecture, training procedures, evaluation methods, and implementation strategies. Includes hands-on examples and real-world applications.",
     category: "AI/ML",
     imageId: "book-2",
+    thumbnail: "/books/3.jpg",
   },
   {
     name: "Hands-On Machine Learning",
@@ -57,6 +62,7 @@ const BOOKS_DATA: Book[] = [
       "Step-by-step guide to machine learning with Python. Explores machine learning concepts using Scikit-Learn and deep learning with TensorFlow. Perfect for beginners and intermediate practitioners.",
     category: "AI/ML",
     imageId: "book-3",
+    thumbnail: "/books/4.jpg",
   },
   {
     name: "Fundamentals of Data Engineering",
@@ -66,6 +72,7 @@ const BOOKS_DATA: Book[] = [
       "Complete overview of modern data engineering. Covers data architecture, ETL processes, data warehousing, and data pipeline design. Essential for aspiring and practicing data engineers.",
     category: "Data Engineering",
     imageId: "book-4",
+    thumbnail: "/books/5.jpg",
   },
   {
     name: "Python for Data Analysis",
@@ -75,6 +82,7 @@ const BOOKS_DATA: Book[] = [
       "Comprehensive guide to data analysis with Python. Learn pandas, NumPy, and data manipulation techniques. Perfect for data scientists and analysts working with Python.",
     category: "Data Science",
     imageId: "book-5",
+    thumbnail: "/books/6.jpg",
   },
   {
     name: "Designing Machine Learning Systems",
@@ -84,6 +92,7 @@ const BOOKS_DATA: Book[] = [
       "Guide to building production-ready ML systems. Covers ML system design, deployment, monitoring, and maintenance. Essential for ML engineers working on production systems.",
     category: "AI/ML",
     imageId: "book-6",
+    thumbnail: "/books/7.jpg",
   },
 ].map((book, index) => ({
   ...book,
@@ -100,9 +109,11 @@ const BookCard = ({
   return (
     <Card className="bg-content1">
       <CardBody className="p-0">
-        <img
-          src={`/api/placeholder/300/400?text=${book.imageId}`}
+        <Image
+          src={book.thumbnail}
           alt={book.name}
+          width={200}
+          height={300}
           className="w-full object-cover h-48"
         />
       </CardBody>
@@ -123,7 +134,7 @@ const BookCard = ({
           className="w-full"
           onClick={() => onOpenModal(book)}
         >
-          Learn More
+          Download
         </Button>
       </CardFooter>
     </Card>
@@ -158,9 +169,11 @@ const BookSection = () => {
               <ModalBody>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="col-span-1">
-                    <img
-                      src={`/api/placeholder/300/400?text=${selectedBook?.imageId}`}
-                      alt={selectedBook?.name}
+                    <Image
+                      src={selectedBook?.thumbnail || ""}
+                      alt={selectedBook?.name || ""}
+                      width={200}
+                      height={300}
                       className="w-full rounded-lg object-cover"
                     />
                   </div>
