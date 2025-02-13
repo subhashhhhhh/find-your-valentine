@@ -36,13 +36,15 @@ export default function Home() {
             height={250}
             width={250}
             src="/meme-image.jpg"
-            objectFit="cover"
+            priority
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,[SOME_SMALL_BASE64]"
           />
         </div>
 
         <div className="max-w-4xl mx-auto mt-8 bg-background rounded-lg p-6">
           <h1 className="text-2xl font-bold text-center mb-6">
-            Here are some things you can do on 14th Feb
+            Here are some cool things you can watch or read on 14th Feb :-
           </h1>
           <Tabs
             aria-label="Resources"
