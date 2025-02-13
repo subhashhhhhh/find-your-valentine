@@ -5,12 +5,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
-import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { Card, CardBody } from "@heroui/card";
 import { Progress } from "@heroui/progress";
-import { Link } from "@heroui/link";
 import { Tabs, Tab } from "@heroui/tabs";
-import { Chip } from "@heroui/chip";
-import { PlayCircle, Book, Twitter } from "lucide-react";
+import { PlayCircle, Book } from "lucide-react";
 import YouTubeSection from "@/components/yt_video_section";
 import BookSection from "@/components/books_section";
 
@@ -35,17 +33,17 @@ export default function Home() {
           <Image
             alt="Meme"
             className="mx-auto rounded-lg shadow-2xl"
-            height={200}
-            width={200}
+            height={250}
+            width={250}
             src="/meme-image.jpg"
             objectFit="cover"
           />
         </div>
 
         <div className="max-w-4xl mx-auto mt-8 bg-background rounded-lg p-6">
-          <h3 className="text-2xl font-bold text-center mb-6">
+          <h1 className="text-2xl font-bold text-center mb-6">
             Here are some things you can do on 14th Feb
-          </h3>
+          </h1>
           <Tabs
             aria-label="Resources"
             className="mb-6 flex justify-center text-center items-center"
@@ -87,7 +85,7 @@ export default function Home() {
           {!isLoading ? (
             <>
               <h1 className="text-3xl font-bold text-center">
-                Find Your Tech Twitter Valentine
+                Find Your Twitter Valentine
               </h1>
               <Input
                 fullWidth
@@ -113,7 +111,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="text-center space-y-4"
             >
-              <h2 className="text-2xl">Searching Tech Twitter...</h2>
+              <h2 className="text-2xl">Searching Twitter...</h2>
               <Progress
                 isIndeterminate
                 aria-label="Loading..."

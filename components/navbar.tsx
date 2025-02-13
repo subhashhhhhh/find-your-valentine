@@ -7,9 +7,8 @@ import {
 import { Link } from "@heroui/link";
 import NextLink from "next/link";
 
-import { TwitterIcon, GithubIcon, DiscordIcon } from "@/components/icons";
+import { TwitterIcon, GithubIcon } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
   return (
@@ -35,7 +34,7 @@ export const Navbar = () => {
           <Link
             isExternal
             aria-label="Github"
-            href={siteConfig.links.github}
+            href={"https://github.com/amaan8429/valentine-twitter"}
             className="sm:block"
           >
             <GithubIcon className="text-default-500" />
