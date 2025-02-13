@@ -128,11 +128,10 @@ const BookCard = ({
           <p className="text-lg font-bold line-clamp-1">{book.name}</p>
           <p className="text-small text-default-500">by {book.author}</p>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col justify-between items-center">
           <Chip color="secondary" size="sm" className="px-3 py-1">
             {book.category}
           </Chip>
-          {/* Stop propagation for the "Download" button */}
           <Button
             color="primary"
             variant="light"
