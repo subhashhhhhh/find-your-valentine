@@ -149,39 +149,48 @@ const VideoCard = ({
   onOpenModal: (video: Video) => void;
 }) => {
   return (
-    <Card className="bg-content1">
-      <CardBody className="p-0">
-        <div className="relative group">
-          <Image
-            src={video.thumbnail}
-            alt={video.name}
-            width={400}
-            height={225}
-            className="w-full aspect-video object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <PlayCircle className="w-12 h-12 text-white" />
-          </div>
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    <div
+      className="bg-content1 cursor-pointer rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105"
+      onClick={() => onOpenModal(video)} // Make the entire card clickable
+    >
+      {/* Thumbnail Section */}
+      <div className="relative group">
+        <Image
+          src={video.thumbnail}
+          alt={video.name}
+          width={400}
+          height={225}
+          className="w-full aspect-video object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <PlayCircle className="w-12 h-12 text-white" />
         </div>
-      </CardBody>
-      <CardHeader className="flex flex-col gap-2">
+      </div>
+
+      {/* Content Section */}
+      <div className="p-4 space-y-2">
         <h3 className="font-semibold text-lg line-clamp-1">{video.name}</h3>
         <p className="text-small text-default-500">{video.duration}</p>
-      </CardHeader>
-      <CardFooter className="flex justify-between">
-        <Chip color="primary" size="sm">
-          {video.level}
-        </Chip>
-        <Button
-          color="primary"
-          variant="light"
-          size="sm"
-          onClick={() => onOpenModal(video)}
-        >
-          Learn More
-        </Button>
-      </CardFooter>
-    </Card>
+        <div className="flex justify-between items-center">
+          <Chip color="primary" size="sm">
+            {video.level}
+          </Chip>
+          {/* Stop propagation for the "Learn More" button */}
+          <Button
+            color="primary"
+            variant="light"
+            size="sm"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent triggering the card's onClick
+              onOpenModal(video);
+            }}
+          >
+            Learn More
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 };
 

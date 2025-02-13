@@ -107,8 +107,12 @@ const BookCard = ({
   onOpenModal: (book: Book) => void;
 }) => {
   return (
-    <Card className="bg-content1">
-      <CardBody className="p-0">
+    <div
+      className="bg-content1 cursor-pointer rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105"
+      onClick={() => onOpenModal(book)} // Make the entire card clickable
+    >
+      {/* Thumbnail Section */}
+      <div className="relative">
         <Image
           src={book.thumbnail}
           alt={book.name}
@@ -116,28 +120,33 @@ const BookCard = ({
           height={300}
           className="w-full object-cover h-48"
         />
-      </CardBody>
-      <CardHeader>
+      </div>
+
+      {/* Content Section */}
+      <div className="p-4 space-y-2">
         <div className="flex flex-col">
-          <p className="text-lg font-bold">{book.name}</p>
+          <p className="text-lg font-bold line-clamp-1">{book.name}</p>
           <p className="text-small text-default-500">by {book.author}</p>
         </div>
-      </CardHeader>
-      <CardFooter className="flex flex-col justify-center gap-2">
-        <Chip color="secondary" size="sm" className="px-3 py-1 ">
-          {book.category}
-        </Chip>
-        <Button
-          color="primary"
-          variant="light"
-          size="sm"
-          className="w-full"
-          onClick={() => onOpenModal(book)}
-        >
-          Download
-        </Button>
-      </CardFooter>
-    </Card>
+        <div className="flex justify-between items-center">
+          <Chip color="secondary" size="sm" className="px-3 py-1">
+            {book.category}
+          </Chip>
+          {/* Stop propagation for the "Download" button */}
+          <Button
+            color="primary"
+            variant="light"
+            size="sm"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent triggering the card's onClick
+              onOpenModal(book);
+            }}
+          >
+            Download
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 };
 
