@@ -17,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
+      <head>
+        <script defer src="https://analytics.subhashh.tech/script.js" data-website-id="7d20511b-8e5d-4f96-a76b-2cd6e356cf7e"></script>
+      </head>
       <body
         className={`${inter.variable} min-h-screen bg-background font-sans`}
       >
