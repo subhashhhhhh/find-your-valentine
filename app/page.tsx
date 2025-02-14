@@ -13,6 +13,7 @@ import YouTubeSection from "@/components/yt_video_section";
 import BookSection from "@/components/books_section";
 
 export default function Home() {
+  const [selectedPlatform, setSelectedPlatform] = useState<"instagram" | "snapchat">("instagram");
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showResult, setShowResult] = useState(false);
@@ -87,11 +88,27 @@ export default function Home() {
           {!isLoading ? (
             <>
               <h1 className="text-3xl font-bold text-center">
-                Find Your Twitter Valentine
+                Find Your Valentine
               </h1>
+              <div className="flex gap-4 justify-center mb-4">
+                <Button
+                  variant={selectedPlatform === "instagram" ? "solid" : "light"}
+                  color="primary"
+                  onClick={() => setSelectedPlatform("instagram")}
+                >
+                  Instagram
+                </Button>
+                <Button
+                  variant={selectedPlatform === "snapchat" ? "solid" : "light"}
+                  color="primary"
+                  onClick={() => setSelectedPlatform("snapchat")}
+                >
+                  Snapchat
+                </Button>
+              </div>
               <Input
                 fullWidth
-                label="Twitter Username"
+                label={`${selectedPlatform === "instagram" ? "Instagram" : "Snapchat"} Username`}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 size="lg"
@@ -113,7 +130,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="text-center space-y-4"
             >
-              <h2 className="text-2xl">Searching Twitter...</h2>
+              <h2 className="text-2xl">Searching {selectedPlatform}...</h2>
               <Progress
                 isIndeterminate
                 aria-label="Loading..."
